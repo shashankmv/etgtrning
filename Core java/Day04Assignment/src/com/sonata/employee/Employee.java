@@ -1,25 +1,34 @@
 package com.sonata.employee;
 
 public class Employee {
-public int empid;
-public String empname;
-public double empsal;
-
-public Employee() {};
-
-public Employee(int id,String name,double sal) {
-	this.empid=id;
-	this.empname=name;
-	this.empsal=sal;
-
-}
-
-void display() {
-	System.out.println(this.empid);
-	System.out.println(this.empname);
-	System.out.println(this.empsal);
+	private int empId;
+	private String empName;
+	private double empSalary;
 	
-}
+	public int getEmpId() {
+		return empId;
+	}
+	public void setEmpId(int empId) {
+		this.empId = empId;
+	}
+	public String getEmpName() {
+		return empName;
+	}
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
+	public double getEmpSalary() {
+		return empSalary;
+	}
+	public void setEmpSalary(double empSalary) {
+		this.empSalary = empSalary;
+	}
+
+	public String toString(){
+		return empId +"\t"+empName+"\t\t"+empSalary;			
+	}
+
+
 
 
 }

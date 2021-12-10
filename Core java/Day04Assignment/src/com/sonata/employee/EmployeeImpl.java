@@ -1,29 +1,67 @@
 package com.sonata.employee;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 
+public class EmployeeImpl  implements EmployeeInt {
+	private static final Exception DuplicateEmployeeID = null;
+	ArrayList<Employee> list=new ArrayList<Employee>();
+	
+	@Override
+	public void addEmployee(Employee e) {
+		// TODO Auto-generated method stub
+		if (e.getEmpSalary()<10000){
+			e.setEmpSalary(e.getEmpSalary()+5000);
+		}
+		try {
+		for (Employee employee : list) {
+			if(employee.getEmpId()==e.getEmpId()){
+				throw DuplicateEmployeeID; 
+			}
+		}
+		list.add(e);
+		}catch (Exception e1) {
+			// TODO Auto-generated catch block
+			System.err.print("Entered employee id("+e.getEmpId()+") already exists\n");
+		}
+		
+	}
 
-public class EmployeeImpl extends Employee implements EmployeeInt {
-	public void addEmployee(Employee e) {}
-	public void deleteEmployee(Employee e) {}
-	public double yearSalary(double amnt) {
-		double x=super.empsal*12;
-		return x;
+	@Override
+	public void deleteEmployee(Employee e) {
+		// TODO Auto-generated method stub
+		list.remove(e);
+	}
+
+	@Override
+	public double yearSalary(Employee e) {
+		// TODO Auto-generated method stub
+		return e.getEmpSalary()*12;
+	}
+
+	@Override
+	public double appSalary(Employee e) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
+	public void displayEmployees(){
+		System.out.println("ID\tName\t\tSalary");
+		for (Employee employee : list) {
+			System.out.println(employee);
+		}
+	}
+
+	@Override
+	public double yearSalary(double amnt) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
 	public double appSalary(double amnt) {
-		double y=super.empsal-1000;
-		return y;
+		// TODO Auto-generated method stub
+		return 0;
 	}
-	public static void main(String[] args) {
-		EmployeeImpl s1=new EmployeeImpl();
-		s1.empid=123;
-		s1.empname="xyz";
-		s1.empsal=5000;
-		s1.display();
-		s1.addEmployee(s1);
-		s1.deleteEmployee(s1);
-		
-		System.out.println(s1.yearSalary(5000));
-		System.out.println(s1.appSalary(5000));
-	}
+	
 }

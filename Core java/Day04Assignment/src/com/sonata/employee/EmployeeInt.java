@@ -5,4 +5,6 @@ public interface EmployeeInt {
 	public void deleteEmployee(Employee e);
 	public double yearSalary(double amnt);
 	public double appSalary(double amnt);
+	double yearSalary(Employee e);
+	double appSalary(Employee e);
 }
