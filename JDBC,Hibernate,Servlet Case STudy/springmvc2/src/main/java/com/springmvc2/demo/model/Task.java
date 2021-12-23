@@ -1,7 +1,8 @@
 package com.springmvc2.demo.model;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 import java.sql.Date;
-
+@JacksonXmlRootElement
 public class Task {
 	private int taskId;
 	private int ownerId;
@@ -9,6 +10,16 @@ public class Task {
 	private String taskName;
 	private String status;
 	private String priority;
+	private String description;
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getTaskName() {
+		return taskName;
+	}
 	private String notes;
 	private String isBookmarked;
 	private Date createdOn;
