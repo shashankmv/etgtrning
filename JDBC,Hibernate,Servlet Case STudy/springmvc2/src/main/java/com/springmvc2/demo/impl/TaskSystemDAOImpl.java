@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -42,9 +44,9 @@ public class TaskSystemDAOImpl implements TaskSystemDAO {
 		return task;
 }
 	@Override
-	public Task getAllTasks(String taskstatus) {
+	public List<Task> getAllTasks(String taskstatus) {
 		Connection con =mySQLConnectionImpl.getConnection();
-		Task task=new Task();
+		List<Task> task=new ArrayList<Task>();
 		
 		try {
 			String sql = "select * from tsk where status=?";
@@ -52,11 +54,13 @@ public class TaskSystemDAOImpl implements TaskSystemDAO {
 			st.setString(1,taskstatus);
 			ResultSet rs=st.executeQuery();
 			while(rs.next()) {
-				task.setTaskId(rs.getInt("tid"));
-				task.setName(rs.getString("tname"));
-				task.setOwnerId(rs.getInt("ownerid"));
-				task.setNotes(rs.getString("notes"));
-				task.setStatus(rs.getString("status"));
+				Task task1=new Task();
+				task1.setTaskId(rs.getInt("tid"));
+				task1.setName(rs.getString("tname"));
+				task1.setOwnerId(rs.getInt("ownerid"));
+				task1.setNotes(rs.getString("notes"));
+				task1.setStatus(rs.getString("status"));
+				task.add(task1);
 			}
 			con.close();
 		}
@@ -159,5 +163,38 @@ public class TaskSystemDAOImpl implements TaskSystemDAO {
 	}
 	else
 	return false;
+	}
+	@Override
+	public List<Task> getAllTask(int ownerid) {
+		Connection con = mySQLConnectionImpl.getConnection();
+		List<Task>  task= new ArrayList<Task>();
+		try {
+			String sql = "select * from tsk where ownerid=? ";
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setInt(1, ownerid);
+
+			ResultSet rs = st.executeQuery();
+			
+			while (rs.next()) {
+				
+				
+				Task task1=new Task(); 
+				
+				task1.setDescription(rs.getString("description"));
+				
+				task1.setNotes(rs.getString("notes"));
+				task1.setOwnerId(rs.getInt("ownerid"));
+				task1.setPriority(rs.getString("priority"));
+				task1.setStatus(rs.getString("status"));
+				task1.setName(rs.getString("tname"));
+				task1.setTaskId(rs.getInt("tid"));
+				task.add(task1);
+			}
+			con.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return task;
+
 	}
 }

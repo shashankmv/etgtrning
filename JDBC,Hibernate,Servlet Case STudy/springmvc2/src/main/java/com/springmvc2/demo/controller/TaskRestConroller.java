@@ -1,15 +1,18 @@
 package com.springmvc2.demo.controller;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springmvc2.demo.TaskSystemDAO;
@@ -27,7 +30,7 @@ public class TaskRestConroller {
 	}
 	
 	@GetMapping("/getalltaskdetails/{status}")
-	public Task getAllTasks(@PathVariable String status)throws SQLException {
+	public List<Task> getAllTasks(@PathVariable String status)throws SQLException {
 	
 	return taskSystemDAOImpl.getAllTasks(status);
 	}
@@ -63,4 +66,11 @@ public class TaskRestConroller {
 	
 	return taskSystemDAOImpl.assignnotes(taskid,notes);
 	}
+	@GetMapping("/restgetAlltask/{ownerid}")
+	public List<Task> getAllTask(@PathVariable int ownerid) throws SQLException {
+
+		return taskSystemDAOImpl.getAllTask(ownerid);
+	}
+	
+
 }
