@@ -1,0 +1,17 @@
+{
+  "name": "nodeeaxample",
+  "version": "1.0.0",
+  "description": "practice",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"node index",
+    "dev":"nodeman index"
+
+  },
+  "author": "shashank",
+  "license": "ISC",
+  "dependencies": {
+    "nodeman": "^1.1.2"
+  }
+}
