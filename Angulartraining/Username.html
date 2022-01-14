@@ -1,0 +1,17 @@
+<div>
+   
+    <div>Enter the username:<input type="text"[(ngModel)]=username /></div>
+    <div>Enter the password:<input type="text"[(ngModel)]=password /></div>
+    <br/> 
+   
+     <div *ngIf="username == 'Shashank' && password  == 'raina' ; else elseNotBlock">
+          <b>Eligible </b>
+     </div>
+              <ng-template #elseNotBlock>
+              <b>  Not Eligible </b>
+             </ng-template>
+
+
+</div>
+
+

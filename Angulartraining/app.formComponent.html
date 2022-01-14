@@ -1,0 +1,15 @@
+<div>
+    <form #userForm1="ngForm" (ngSubmit)="onSubmit(userForm1.value)">
+        Username: <input type="text" placeholder="Enter Username " name="userName" ngModel>
+        <br>
+
+        Password: <input type="text" placeholder="Enter Password " name="password" ngModel>
+        <br>
+
+        
+        
+        <button type="submit" value="submit">Submit</button>
+
+
+    </form>
+</div>

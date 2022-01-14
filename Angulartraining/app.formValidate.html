@@ -1,0 +1,16 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+    FirstName:<input type="text" name="firstname"
+    placeholder="firstname" formControlName="firstname">
+    <br>
+    LastName:<input type="text" name="lastname"
+    placeholder="lastname" formControlName="lastname">
+    <br>
+    languages:<select name="languages" formControlName="languages">
+        <option value="javascript">javascript</option>
+        <option value="typescript">typescript</option>
+    </select>
+    <br> 
+    <input type="submit" [disabled]="!form.valid" value="submit" />
+    <br>
+    
+</form>
